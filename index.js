@@ -2,15 +2,15 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 
-const PORT = 8080;
+const port = process.env.PORT || 3000
 
 app.use(express.json());
 app.use(cors());
 
-app.get("/products", (req, res) => {
-   res.status(200).send("All Products!!!");
+app.get('/', (req, res) => {
+    res.status(200).send('Hello World!');
 });
 
-app.listen(PORT, () => {
+app.listen(port, () => {
     console.log(`Server is Listening at the port ${PORT}`);
 });
