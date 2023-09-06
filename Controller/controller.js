@@ -9,7 +9,7 @@ const pool = mysql2.createPool({
   host: process.env.host,
   database: process.env.database,
   user: process.env.user,
-  port: process.env.port,
+  port: process.env.port123,
   password: process.env.password,
 });
 
