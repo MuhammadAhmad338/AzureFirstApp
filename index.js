@@ -5,14 +5,10 @@ const router = require("./Endpoint/endpoint");
 const productRouter = require("./Endpoint/productEndpoints");
 const PORT = process.env.PORT || 3000;
 // Configure CORS to allow requests from your frontend origin
-const corsOptions = {
-  origin: "http://localhost:5173", // Replace with your frontend's URL
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  credentials: true, // This allows cookies to be sent along with the request (if applicable)
-};
+
 
 app.use(express.json());
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use("/", router);
 app.use("/products", productRouter);
