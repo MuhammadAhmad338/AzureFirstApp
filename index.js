@@ -1,24 +1,22 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-
-const port = process.env.PORT || 3000;
+const router = require("./Endpoint/endpoint");
+const productRouter = require("./Endpoint/productEndpoints");
+const PORT = process.env.PORT || 3000;
+// Configure CORS to allow requests from your frontend origin
+const corsOptions = {
+  origin: "http://localhost:5173", // Replace with your frontend's URL
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true, // This allows cookies to be sent along with the request (if applicable)
+};
 
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 
-app.get('/', (req, res) => {
-    res.status(200).send('Hello World!!!');
-});
+app.use("/", router);
+app.use("/products", productRouter);
 
-app.get('/products', (req, res) => {
-    res.status(200).send('All Products!!!');
-});
-
-app.get('/allProducts', (req, res) => {
-    res.status(200).send("Hello World I got all Products!!!");
-});
-
-app.listen(port, () => {
-    console.log(`Server is Listening at the port ${port}`);
+app.listen(PORT, () => {
+  console.log(`Server is Listening at the port ${PORT}`);
 });
