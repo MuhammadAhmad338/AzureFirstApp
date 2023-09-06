@@ -3,7 +3,7 @@ const app = express();
 const cors = require("cors");
 const router = require("./Endpoint/endpoint");
 const productRouter = require("./Endpoint/productEndpoints");
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 // Configure CORS to allow requests from your frontend origin
 
 
