@@ -16,7 +16,7 @@ const allProductsAvailable = async (req, res) => {
 };
 
 const productsByCategory = async (req, res) => {
-  const category = req.category;
+  const { category } = req.body;
   try {
     const query = "SELECT * FROM PRODUCTS WHERE category = ?";
     pool.query(query, [category], (results, error) => {
@@ -31,5 +31,7 @@ const productsByCategory = async (req, res) => {
     res.status(500).json(error);
   }
 };
+
+
 
 module.exports = { allProductsAvailable, productsByCategory };
