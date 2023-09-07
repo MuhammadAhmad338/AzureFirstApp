@@ -5,4 +5,4 @@ const { allProductsAvailable, productsByCategory } = require("../Controller/prod
 productRouter.get("/allProducts", allProductsAvailable);
 productRouter.get("/productByCategory", productsByCategory);
 
-module.exports = productRouter
+module.exports = productRouter;
