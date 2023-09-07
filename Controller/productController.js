@@ -32,4 +32,21 @@ const productsByCategory = async (req, res) => {
   }
 };
 
-module.exports = { allProductsAvailable, productsByCategory };
+const searchProducts = async (req, res) => {
+  const { title } = req.query;
+  try {
+    const query = "SELECT * FROM products WHERE title LIKE ?";
+    pool.query(query, [`%${title}%`], (results, error) => {
+        if (!results) {
+          res.json(error);
+        } else {
+          res.statsu(200).json(results);
+        }
+    });
+  } catch(error) {
+    console.log(error);
+    res.status(500).json(error);
+  }
+}
+
+module.exports = { allProductsAvailable, productsByCategory, searchProducts };
