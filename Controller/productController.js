@@ -2,12 +2,12 @@ const { pool } = require("./controller");
 
 const allProductsAvailable = async (req, res) => {
   try {
-    const query = "SELECT * FROM PRODUCTS";
+    const query = "SELECT * FROM products";
     pool.query(query, (results, error) => {
       if (!results) {
-        res.status(500).json(error);
+        res.json(error);
       } else {
-        res.status(200).json(results);
+        res.json(results);
       }
     });
   } catch (error) {
@@ -18,12 +18,12 @@ const allProductsAvailable = async (req, res) => {
 const productsByCategory = async (req, res) => {
   const { category } = req.body;
   try {
-    const query = "SELECT * FROM PRODUCTS WHERE category = ?";
+    const query = "SELECT * FROM products WHERE category = ?";
     pool.query(query, [category], (results, error) => {
       if (!results) {
-        res.status(500).json(error);
+        res.json(error);
       } else {
-        res.status(200).json(results);
+        res.json(results);
       }
     });
   } catch (error) {
@@ -31,7 +31,5 @@ const productsByCategory = async (req, res) => {
     res.status(500).json(error);
   }
 };
-
-
 
 module.exports = { allProductsAvailable, productsByCategory };
