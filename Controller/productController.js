@@ -49,4 +49,21 @@ const searchProducts = async (req, res) => {
   }
 }
 
-module.exports = { allProductsAvailable, productsByCategory, searchProducts };
+const filterByCategory = async (req, res) => {
+  const { category } = req.query;
+  try {
+    const query = `SELECT * FROM products WHERE category = ?`;
+    pool.query(query, [category], (results, error) => {
+      if (!results) {
+        res.json(error);
+      } else {
+        res.status(200).json(results); 
+      }
+    })
+  } catch(error) {
+    console.log(error);
+    res.status(500).json(error);
+  }
+}
+
+module.exports = { allProductsAvailable, productsByCategory, searchProducts, filterByCategory };
