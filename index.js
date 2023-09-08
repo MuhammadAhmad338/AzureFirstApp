@@ -15,5 +15,5 @@ app.use("/", router);
 app.use("/products", productRouter);
 
 app.listen(PORT, () => {
-  console.log(`Server is Listening at the port ${PORT}`);
+  console.log(`Server is Listening at the the port ${PORT}`);
 });
