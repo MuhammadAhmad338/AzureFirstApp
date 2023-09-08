@@ -5,13 +5,7 @@ const bcrypt = require("bcrypt");
 
 dotenv.config();
 
-const pool = mysql2.createPool({
-  host: process.env.host,
-  database: process.env.database,
-  user: process.env.user,
-  port: process.env.port123,
-  password: process.env.password,
-});
+const pool = mysql2.createPool(process.env.DATABASE_URL);
 
 const register = async (req, res) => {
   const firstName = req.body.firstName;
