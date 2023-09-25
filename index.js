@@ -6,7 +6,7 @@ const productRouter = require("./Endpoint/productEndpoints");
 const bodyParser = require("body-parser");
 
 // Start the server
-const PORT = parseInt(process.env.PORT) || 8080;
+const PORT = parseInt(process.env.PORT) || 6000;
 
 app.use(express.json());
 app.use(cors());
