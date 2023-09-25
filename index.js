@@ -4,7 +4,9 @@ const cors = require("cors");
 const router = require("./Endpoint/endpoint");
 const productRouter = require("./Endpoint/productEndpoints");
 const bodyParser = require("body-parser");
-const PORT = process.env.PORT || 8080;
+
+// Start the server
+const PORT = parseInt(process.env.PORT) || 8080;
 
 app.use(express.json());
 app.use(cors());
