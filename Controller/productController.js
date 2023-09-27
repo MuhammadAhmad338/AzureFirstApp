@@ -55,7 +55,7 @@ const searchProducts = (req, res) => {
     const sqlQuery = "SELECT * FROM products WHERE title LIKE ?";
     pool.query(sqlQuery, [`%${query}%`], (results, error) => {
       if (!results) {
-        res.status(500).json(error);
+        res.json(error);
       } else {
         res.status(200).json(results);
       }
