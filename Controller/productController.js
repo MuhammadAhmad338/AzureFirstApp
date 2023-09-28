@@ -16,10 +16,10 @@ const allProductsAvailable = async (req, res) => {
 };
 
 const productsByCategory = async (req, res) => {
-  const { category } = req.body;
+  const { q } = req.query;
   try {
     const query = "SELECT * FROM products WHERE category = ?";
-    pool.query(query, [category], (results, error) => {
+    pool.query(query, [q], (results, error) => {
       if (!results) {
         res.json(error);
       } else {
