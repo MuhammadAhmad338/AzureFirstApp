@@ -28,7 +28,7 @@ const postProductComments = async (req, res) => {
       if (!results) {
         res.json(error);
       } else {
-        res.status(200).json(results);
+        res.status(200).json("Product Added Successfully!");
       }
     });
   } catch (error) {
