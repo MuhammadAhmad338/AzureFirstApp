@@ -3,6 +3,7 @@ const app = express();
 const cors = require("cors");
 const router = require("./Endpoint/endpoint");
 const productRouter = require("./Endpoint/productEndpoints");
+const commentRouter = require("./Endpoint/commentEndponts");
 const bodyParser = require("body-parser");
 
 // Start the server
@@ -15,6 +16,7 @@ app.use(bodyParser.json());
 
 app.use("/", router);
 app.use("/products", productRouter);
+app.use("/comments", commentRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is Listening at the the port ${PORT}`);
