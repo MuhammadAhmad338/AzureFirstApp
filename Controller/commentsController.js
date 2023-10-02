@@ -24,12 +24,8 @@ const postProductComments = async (req, res) => {
   const content = req.body.content;
   try {
     const query = "INSERT INTO comments (product_id, content) VALUES(?, ?)";
-    pool.query(query, [productId, content], (results, error) => {
-      if (!results) {
-        res.json(error);
-      } else {
-        res.status(200).json("Product Added Successfully!");
-      }
+    pool.query(query, [productId, content], () => {
+        res.status(200).json({ status : "Product Added Successfully!"});
     });
   } catch (error) {
     console.log(error);
