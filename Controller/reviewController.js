@@ -19,28 +19,29 @@ const getProductReviews = async (req, res) => {
 };
 
 const addProductReviews = async (req, res) => {
-    const productid = req.body.productid;
-    const name = req.body.name;
-    const email = req.body.email;
-    const reviewtitle = req.body.reviewtitle;
-    const rating = req.body.rating;
-    const content = req.body.content;
-    try {
-        const query = "INSERT INTO reviews (productid,  email, name, reviewtitle, rating, content) VALUES (?, ?, ?, ?, ?, ?)";
-        pool.query(query, [productid, email, name, reviewtitle, rating, content], (results, error) => {
-            if (!results) {
-                res.json(error);     
-            } else {
-                res.status(200).json(results);
-            }
-        })
-    } catch(error) {
+  const productid = req.body.productid;
+  const name = req.body.name;
+  const email = req.body.email;
+  const reviewtitle = req.body.reviewtitle;
+  const rating = req.body.rating;
+  const content = req.body.content;
+  try {
+    const query =
+      "INSERT INTO reviews (productid,  email, name, reviewtitle, rating, content) VALUES (?, ?, ?, ?, ?, ?);";
+    pool.query(
+      query,
+      [productid, email, name, reviewtitle, rating, content],
+      (results, error) => {
+        res.status(200).json({ status: `Review Added Successfully!` });
+      }
+    );
+  } catch (error) {
     console.log(error);
     res.status(200).json(error);
-    }
-}
+  }
+};
 
 module.exports = {
-    addProductReviews, 
-    getProductReviews
-}
+  addProductReviews,
+  getProductReviews,
+};
