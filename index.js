@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const router = require("./Routes/userRoutes");
+const userRouter = require("./Routes/userRoutes");
 const productRouter = require("./Routes/productRoutes");
 const commentRouter = require("./Routes/commentRoutes");
 const reviewRouter = require("./Routes/reviewRoutes");
@@ -14,7 +14,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 
-app.use("/api/users", router);
+app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
 app.use("/api/comments", commentRouter);
 app.use("/api/reviews", reviewRouter);
