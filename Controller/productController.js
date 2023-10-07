@@ -1,4 +1,4 @@
-const { pool } = require("./controller");
+const pool = require("../Middleware/dbConnect");
 
 const allProductsAvailable = async (req, res) => {
   try {

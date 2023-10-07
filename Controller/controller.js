@@ -1,11 +1,12 @@
-const mysql2 = require("mysql2");
-const dotenv = require("dotenv");
+const pool = require("../Middleware/dbConnect");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
-dotenv.config();
-
-const pool = mysql2.createPool(process.env.DATABASE_URL);
+const createToken = (email) => {
+  return jwt.sign({ email }, process.env.SECRET, {
+    expiresIn: 60 * 60,
+  });
+};
 
 const register = async (req, res) => {
   const firstName = req.body.firstName;
@@ -37,10 +38,8 @@ const register = async (req, res) => {
           if (!results) {
             res.json({ status: error });
           } else {
-            const token = jwt.sign({ email }, process.env.SECRET, {
-              expiresIn: 60 * 60,
-            });
-            res.json({ token });
+            const token = createToken(email);
+            res.json({success: true, token });
           }
         }
       );
@@ -65,8 +64,8 @@ const signin = async (req, res) => {
     const user = results[0];
     const userSigned = await bcrypt.compare(password, user.password);
     if (userSigned) {
-      const token = jwt.sign({ email }, process.env.SECRET, { expiresIn: 60 * 60 });
-      res.json({ token });
+      const token = createToken(email);
+      res.json({success: true, token });
     } else {
       res.json({ status: "User is not SignedIn and check your Credentials" });
     }
